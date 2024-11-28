@@ -1,0 +1,36 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. AUMENTO.
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SPECIAL-NAMES.
+           DECIMAL-POINT IS COMMA.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       77 WRK-NOME             PIC X(20)    VALUE SPACES.
+       77 WRK-ANO-ENTRADA      PIC 9(04)    VALUE ZEROS.
+       77 WRK-SALARIO          PIC 9(05)V99 VALUE ZEROS.
+       PROCEDURE DIVISION.
+           DISPLAY 'NOME..'
+           ACCEPT WRK-NOME.
+
+           DISPLAY 'ANO DE ENTRADA NA EMPRESA..'
+           ACCEPT WRK-ANO-ENTRADA.
+          
+           DISPLAY 'SALARIO..'
+           ACCEPT WRK-SALARIO.
+
+          EVALUATE (2024 - WRK-ANO-ENTRADA)
+            WHEN 0 THRU 1
+              COMPUTE WRK-SALARIO = WRK-SALARIO * 1
+            WHEN 2 THRU 5
+              COMPUTE WRK-SALARIO = WRK-SALARIO * 1,05
+            WHEN 6 THRU 15
+              COMPUTE WRK-SALARIO = WRK-SALARIO * 1,10
+            WHEN OTHER
+              COMPUTE WRK-SALARIO = WRK-SALARIO * 1,15
+           END-EVALUATE.
+
+           DISPLAY '========================='
+           DISPLAY 'O VALOR DO SALARIO ATUAL É ' WRK-SALARIO
+           STOP RUN.
+
